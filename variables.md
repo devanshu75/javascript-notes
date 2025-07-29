@@ -151,3 +151,71 @@ print()
 ```
 
 **let**: Variables declared with **let** can be reassigned to other values, but they cannot be redeclared.
+
+```
+Syntax:
+
+let number = 50
+
+let number = 100 // SyntaxError: Identifier 'number' has already been declared
+```
+
+## let Hoisting
+
+let are hoisted to the top of their global, local or block scope, but their hoisting is a little different from the one with **var**.
+
+- var variables are hoisted with a default value of undefined, which makes them accessible before their line of declaration.
+
+- let variables are hoisted without a default initialization, Instead of getting undefined or variable is not defined error, We cannot access variable before initialization.
+
+```
+console.log(number) // ReferenceError: Cannot access 'number' before initialization
+
+let number = 50
+
+**local Scope Variable**
+
+function print() {
+    let square = number * number
+    let number = 50
+}
+print() // ReferenceError: Cannot access 'number' before initialization
+```
+
+## const hoisting
+
+variables declared with const are similar to let in regards to scope.
+Such variable can have a global,local, or block scope.
+
+```
+const number = 50
+
+function print() {
+  const square = number * number
+
+  if (number < 60) {
+    var largerNumber = 80
+    const anotherLargerNumber = 100
+
+    console.log(square)
+  }
+
+  console.log(largerNumber)
+  console.log(anotherLargerNumber)
+}
+
+print()
+// 2500
+// 80
+// ReferenceError: anotherLargerNumber is not defined
+```
+
+## Redeclaring and reassign variables declared with const
+
+const is different from var and let. const is used for declaring constant variables – which are variables with values that cannot be changed. So such variables cannot be redeclared, and neither can they be reassigned to other values. Attempting such would throw an error.
+
+## How to hoist variables declared with const
+
+Variables declared with const, just like let, are hoisted to the top of their global, local, or block scope – but without a default initialization.
+
+var variables, as you've seen earlier, are hoisted with a default value of undefined so they can be accessed before declaration without errors. Accessing a variable declared with const before the line of declaration will throw a cannot access variable before initialization error.
